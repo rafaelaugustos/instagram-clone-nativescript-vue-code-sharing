@@ -1,6 +1,6 @@
 <template web>
   <div class="post">
-    <div class="post__profile">
+    <div class="post__profile" @click="goTo('profile')">
       <div class="post__imgProfile">
         <img src="~/assets/images/rafael.jpg" style="width: 100%">
       </div>
@@ -8,14 +8,14 @@
     </div>
     <img class="post__image" :src="Image">
     <div class="post__desc">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla libero mi, placerat eu lacus vel, vestibulum varius ipsum.</p>
+      <p>{{ Description }}</p>
     </div>
   </div>
 </template>
 
 <template native>
   <StackLayout class="post">
-    <FlexboxLayout class="post__profile">
+    <FlexboxLayout class="post__profile" @tap="goTo('profile')">
       <StackLayout class="post__imgProfile">
         <Image
           src="~/assets/images/rafael.jpg"
@@ -24,6 +24,7 @@
       </StackLayout>
       <Label text="rafaelaugusto.me" />
     </FlexboxLayout>
+
     <Image
       class="post__image"
       :src="Image"
@@ -31,17 +32,24 @@
     <FlexboxLayout class="post__desc">
       <Label
         textWrap
-        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla libero mi, placerat eu lacus vel, vestibulum varius ipsum."
+        :text="Description"
       />
     </FlexboxLayout>
   </StackLayout>
 </template>
 
 <script>
+  const { VUE_APP_MODE } = process.env;
 
   export default {
     props: {
-      Image: String
+      Image: String,
+      Description: String
+    },
+    methods: {
+      goTo(route){
+        VUE_APP_MODE === 'web' ? this.$router.push(route) : this.$navigator.navigate(route)
+      }
     }
   }
 </script>

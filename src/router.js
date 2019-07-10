@@ -1,22 +1,23 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Home from '~/views/Home.vue';
-import About from '~/views/About.vue';
+import Vue from 'vue'
+import Router from 'vue-router'
+import Timeline from '~/views/Timeline'
+import Profile from '~/views/Profile'
 
-Vue.use(Router);
+Vue.use(Router)
 
 export const options = {
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home
+      name: 'timeline',
+      component: Timeline
     },
     {
-      path: '/about',
-      name: 'about',
-      component: About,
+      path: '/profile',
+      name: 'profile',
+      component: Profile
     }
   ]
-};
-export default new Router(options);
+}
+
+export default new Router(options)
